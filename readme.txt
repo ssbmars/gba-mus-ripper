@@ -1,3 +1,9 @@
+== WHAT'S DIFFERENT IN THIS FORK ==  
+
+- EXE files are provided on the Releases page  
+- minor bugfix for an issue that prevented gba_mus_ripper from doing its job  
+- no additional features, only a minor change and precompiled binaries  
+
 =======================================
 GBA Mus Ripper by Bregalad and CaptainSwag101
 Release 2.5; September 19, 2017
