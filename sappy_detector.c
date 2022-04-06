@@ -297,7 +297,7 @@ int main(const int argc, string argv[])
 	size_t errcode = fread(inGBA_dump, 1, inGBA_length, inGBA);
 	if (errcode != inGBA_length)
 	{
-		fprintf(stderr, "Error: Can't dump ROM file. %lu\n", errcode);
+		fprintf(stderr, "Error: Can't dump ROM file. %llu\n", errcode);
 		exit(0);
 	}
 	fclose(inGBA);
