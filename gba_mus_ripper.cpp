@@ -182,7 +182,11 @@ int main(int argc, char *const argv[])
 
 	// Compute program prefix (should be "", "./", "../" or whathever)
 	std::string prg_name = argv[0];
+	#ifndef WIN32
 	std::string prg_prefix = prg_name.substr(0, prg_name.rfind(GBA_MUS_RIPPER_NAME));
+	#else
+	std::string prg_prefix = "";
+	#endif
 
 	int sample_rate = 0, main_volume = 0;		// Use default values when those are '0'
 
@@ -192,8 +196,8 @@ int main(int argc, char *const argv[])
 		// Auto-detect address of sappy engine
 #ifdef WIN32
 		// On windows, just use the 32-bit return code of the sappy_detector executable
-		std::string sappy_detector_cmd = prg_prefix + "sappy_detector \"" + inGBA_path + "\"";
-        printf("DEBUG: Going to call system(%s)\n", sappy_detector_cmd.c_str());
+		std::string sappy_detector_cmd = prg_prefix + "sappy_detector.exe \"" + inGBA_path + "\"";
+        //printf("DEBUG: Going to call system(%s)\n", sappy_detector_cmd.c_str());
 		int sound_engine_adr = std::system(sappy_detector_cmd.c_str());
 #else
 		// On linux the function is duplicated in this executable
@@ -335,7 +339,7 @@ int main(int argc, char *const argv[])
 
 			printf("Song %u\n", i);
 
-			printf("DEBUG: Going to call system(%s)\n", seq_rip_cmd.c_str());
+			//printf("DEBUG: Going to call system(%s)\n", seq_rip_cmd.c_str());
 			if (!system(seq_rip_cmd.c_str())) puts("An error occurred while calling song_ripper.");
 		}
 	}
@@ -358,7 +362,7 @@ int main(int argc, char *const argv[])
 			if (gm) sf_rip_args += " -gm";
 			sf_rip_args += " 0x" + hex(*j);
 
-            printf("DEBUG: Goint to call system(%s)\n", sf_rip_args.c_str());
+            //printf("DEBUG: Goint to call system(%s)\n", sf_rip_args.c_str());
 			system(sf_rip_args.c_str());
 		}
 	}
@@ -378,7 +382,7 @@ int main(int argc, char *const argv[])
 			sf_rip_args += " 0x" + hex(*j);
 
 		// Call sound font ripper
-        printf("DEBUG: Going to call system(%s)\n", sf_rip_args.c_str());
+        //printf("DEBUG: Going to call system(%s)\n", sf_rip_args.c_str());
 		system(sf_rip_args.c_str());
 	}
 
